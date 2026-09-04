@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #d9e5ff;
+  --color-brand-500: #2f5bea;
+  --color-brand-600: #2249c9;
+  --color-brand-700: #1c3ba3;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+}
+.dark {
+  --bg: #0b0f17;
+  --surface: #111827;
+  --border: #1f2937;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+}
+
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Focus visibility for accessibility */
+:focus-visible { outline: 2px solid #2f5bea; outline-offset: 2px; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.animate-fade-in { animation: fade-in 160ms ease-out; }
+
+/* Resume document: keep light regardless of app theme */
+.resume-page { color-scheme: light; }
+.resume-page a { color: inherit; text-decoration: none; }
+.resume-page p, .resume-page li { orphans: 3; widows: 3; }
+.resume-avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+@media print {
+  @page { margin: 0; }
+  html, body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .print-root { position: absolute; inset: 0; margin: 0; padding: 0; }
+  [data-sheet] { transform: none !important; box-shadow: none !important; margin: 0 !important; break-after: page; }
+  [data-sheet-wrap] { width: auto !important; height: auto !important; }
+  .print-root { gap: 0 !important; }
+}

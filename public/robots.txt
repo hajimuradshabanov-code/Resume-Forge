@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /templates
+Allow: /login
+Allow: /register
+Disallow: /dashboard
+Disallow: /resume/
+Disallow: /settings
+Disallow: /api/
